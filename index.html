@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohy Studio — استوديو محيي</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700;800&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- GSAP & ScrollTrigger & Lenis & Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.13/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="film-grain"></div>
+
+<!-- شاشة التحميل السينمائية -->
+<div id="preloader">
+  <h1 class="font-display text-4xl text-[#C9A84C] tracking-[0.3em] uppercase" dir="ltr">MOHY STUDIO</h1>
+  <p class="font-mono text-xs text-[#888] mt-3 tracking-widest uppercase">جارٍ إقلاع المحرك السينمائي...</p>
+  <div class="pl-bar"><div class="pl-fill"></div></div>
+</div>
+
+<!-- شاشة الـ 3D الخلفية -->
+<canvas id="webgl-canvas"></canvas>
+
+<!-- محتوى الموقع -->
+<main id="smooth-wrapper">
+  <div id="smooth-content">
+
+    <!-- شريط التنقل -->
+    <nav class="fixed top-0 left-0 w-full px-6 md:px-12 py-5 flex items-center justify-between z-50 interactive bg-[#0A0A0A]/80 backdrop-blur-md border-b border-[#2A2A2A]">
+      <a href="#" class="font-display text-xl text-[#C9A84C] font-bold tracking-widest uppercase" dir="ltr">MOHY STUDIO</a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-[#888]">
+        <a href="#about" class="hover:text-[#F5F0E8] transition">الرؤية</a>
+        <a href="#works" class="hover:text-[#F5F0E8] transition">الأعمال</a>
+        <a href="#contact" class="hover:text-[#F5F0E8] transition">التواصل</a>
+      </div>
+      <a href="#contact" class="btn-gold !py-2 !px-5 !text-xs">طلب استشارة</a>
+    </nav>
+
+    <!-- قسم الهيرو (محرك التمرير 3D) -->
+    <section class="h-[300vh] relative" id="hero-sequence">
+      <div class="sticky top-0 left-0 w-full h-screen flex items-center px-6 md:px-16 max-w-7xl mx-auto">
+        <div class="max-w-2xl interactive">
+          <span class="text-[#C9A84C] font-mono text-xs tracking-widest uppercase block mb-3">التصميم • البرمجة • الإبداع</span>
+          <h1 class="font-display text-5xl md:text-7xl font-bold mb-6 leading-tight text-[#F5F0E8]">
+            نصنع الفخامة <em class="text-[#C9A84C]" style="font-style:normal;">الرقمية.</em>
+          </h1>
+          <p class="text-[#888] text-lg mb-8 leading-relaxed">
+            أنا محمد محيي. أدمج الأكواد مع التصميم السينمائي لأخلق لك تجارب رقمية تخطف العقول وتزيد المبيعات.
+          </p>
+          <a href="#works" class="btn-gold">استكشف الأعمال ←</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- قسم نبذة وعملي -->
+    <section id="about" class="py-32 bg-[#0A0A0A] border-t border-[#2A2A2A] relative z-20">
+      <div class="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-16 items-center">
+        <div class="interactive">
+          <span class="text-[#C9A84C] font-mono text-xs tracking-widest uppercase block mb-4">نبذة عن الاستوديو</span>
+          <h2 class="section-title mb-6 text-[#F5F0E8]">حيث يلتقي المنطق<br/><em class="text-[#C9A84C]" style="font-style:normal;">ببراعة التنفيذ</em></h2>
+          <p class="text-[#888] leading-relaxed mb-6 text-lg">
+            نعتمد في استوديو محيي على أحدث التقنيات البرمجية وأفضل ممارسات الأداء لضمان تجربة مستخدم سريعة، مذهلة، ومستقرة على الهواتف والأجهزة الذكية.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <span class="px-3 py-1 border border-[#2A2A2A] text-xs font-mono text-[#C9A84C] rounded">React.js / Next.js</span>
+            <span class="px-3 py-1 border border-[#2A2A2A] text-xs font-mono text-[#C9A84C] rounded">Three.js / WebGL</span>
+            <span class="px-3 py-1 border border-[#2A2A2A] text-xs font-mono text-[#C9A84C] rounded">GSAP Animations</span>
+          </div>
+        </div>
+        <div class="bg-[#141414] border border-[#2A2A2A] p-8 rounded-xl interactive relative">
+          <h3 class="text-2xl font-bold mb-4 text-[#F5F0E8]">معايير الجودة العالية</h3>
+          <p class="text-[#888] text-sm leading-loose">
+            كل مشروع يتم التعامل معه كأنه عمل سينمائي متكامل؛ من سرعة التحميل الخارقة، التجاوب المثالي مع الشاشات، وحتى تفاصيل الأنيميشن الدقيقة.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- قسم الأعمال -->
+    <section id="works" class="py-32 bg-[#080808] border-t border-[#2A2A2A] relative z-20">
+      <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="text-center mb-20 interactive">
+          <span class="text-[#C9A84C] font-mono text-xs tracking-widest uppercase block mb-3">أعمال مختارة</span>
+          <h2 class="section-title text-[#F5F0E8]">مشاريع تتحدث عن <em class="text-[#C9A84C]" style="font-style:normal;">نفسها</em></h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-10 interactive">
+          <div class="border border-[#2A2A2A] bg-[#0A0A0A] p-6 rounded-xl group hover:border-[#C9A84C] transition-colors duration-500">
+            <div class="aspect-video bg-[#141414] rounded mb-6 flex items-center justify-center border border-[#2A2A2A]">
+              <span class="font-display text-3xl text-[#C9A84C]/40">Cloud Kitchen</span>
+            </div>
+            <h3 class="text-2xl font-bold mb-2 text-[#F5F0E8]">Cloud Kitchen</h3>
+            <p class="text-[#888] text-sm">هوية بصرية وتصميم واجهات ويب فاخرة.</p>
+          </div>
+          <div class="border border-[#2A2A2A] bg-[#0A0A0A] p-6 rounded-xl group hover:border-[#C9A84C] transition-colors duration-500">
+            <div class="aspect-video bg-[#141414] rounded mb-6 flex items-center justify-center border border-[#2A2A2A]">
+              <span class="font-display text-3xl text-[#C9A84C]/40">Hamo Salon</span>
+            </div>
+            <h3 class="text-2xl font-bold mb-2 text-[#F5F0E8]">Hamo Salon</h3>
+            <p class="text-[#888] text-sm">نظام حجوزات متكامل وحملات تسويقية ناجحة.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- الفوتر والتواصل -->
+    <footer id="contact" class="py-24 bg-[#0A0A0A] border-t border-[#2A2A2A] text-center relative z-20 interactive">
+      <div class="max-w-4xl mx-auto px-6">
+        <h2 class="section-title mb-6 text-[#F5F0E8]">هل أنت مستعد لنقل موقعك <em class="text-[#C9A84C]" style="font-style:normal;">للمستوى التالي؟</em></h2>
+        <p class="text-[#888] mb-10 text-lg">دعنا نناقش فكرتك ونحولها إلى واقع رقمي مبهر.</p>
+        <a href="mailto:mmmmohy37@gmail.com" class="btn-gold !text-lg !px-8 !py-4">تواصل معي مباشرة</a>
+        <p class="text-[#555] text-xs font-mono mt-16">© 2026 Mohy Studio. جميع الحقوق محفوظة.</p>
+      </div>
+    </footer>
+
+  </div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
+
