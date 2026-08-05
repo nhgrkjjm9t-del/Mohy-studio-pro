@@ -1,1 +1,0 @@
-# Mohy-studio-pro
